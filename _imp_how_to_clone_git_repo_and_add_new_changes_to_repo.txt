@@ -1,0 +1,120 @@
+==========********* If git version is new like 2.7.4, else first update git as shown below *************=======
+==================================================================
+#repository name  = online_judge
+
+rm -Rf online_judge/
+git clone https://github.com/jha-sudhakar/online_judge
+
+cd online_judge
+git remote
+git remote -v
+
+git fetch origin
+git push origin master
+ 
+touch first_file_after__git_clone.txt;  git add first_file_after__git_clone.txt; git commit -m "1st commit"
+git config user.name "sudhakar jha"
+git config user.email "jhasahj@gmail.com"
+
+git commit -m "1st commit"
+git push origin master
+
+
+#You can also have Git store your credentials permanently using the following:
+    git config credential.helper store
+
+#If you want Git to resume to asking you for credentials every time it needs to connect to the remote repository:
+    git config --unset credential.helper
+
+#To store the passwords in .git-credentials in your %HOME% directory as opposed to the project directory: use the --global flag
+    git config --global credential.helper store
+
+==================================================================
+git will not work if version is older like 1.7.10, so update it as following in hortonworks box.
+https://stackoverflow.com/questions/21820715/how-to-install-latest-version-of-git-on-centos-6-x-7-x
+Answer by AmirHd at above stackover flow question.
+
+yum install  -y curl-devel expat-devel gettext-devel openssl-devel zlib-devel
+#yum install -y  gcc perl-ExtUtils-MakeMaker
+yum install  -y perl-ExtUtils-MakeMaker
+yum remove git
+
+cd /usr/src
+wget https://www.kernel.org/pub/software/scm/git/git-2.7.4.tar.gz
+tar xzf git-2.7.4.tar.gz
+
+cd git-2.7.4
+make prefix=/usr/local/git all
+make prefix=/usr/local/git install
+
+echo 'export PATH=$PATH:/usr/local/git/bin' >> /etc/bashrc
+or
+echo 'export PATH=$PATH:/usr/local/git/bin' > /etc/profile.d/git.sh
+
+source /etc/bashrc
+git --version
+
+
+===========================================================================================================================
+/media/sf_edx> rm -Rf online_judge/
+/media/sf_edx> git clone https://github.com/jha-sudhakar/online_judge
+Cloning into 'online_judge'...
+remote: Counting objects: 593, done.
+remote: Compressing objects: 100% (15/15), done.
+remote: Total 593 (delta 7), reused 16 (delta 3), pack-reused 570
+Receiving objects: 100% (593/593), 18.54 MiB | 735.00 KiB/s, done.
+Resolving deltas: 100% (179/179), done.
+Checking connectivity... done.
+Checking out files: 100% (395/395), done.
+/media/sf_edx> git remote
+fatal: Not a git repository (or any parent up to mount point /media/sf_edx)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+/media/sf_edx> git remote -v
+fatal: Not a git repository (or any parent up to mount point /media/sf_edx)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+/media/sf_edx>
+/media/sf_edx> cd online_judge/
+/media/sf_edx/online_judge> git remote
+origin
+/media/sf_edx/online_judge> git remote -v
+origin  https://github.com/jha-sudhakar/online_judge (fetch)
+origin  https://github.com/jha-sudhakar/online_judge (push)
+/media/sf_edx/online_judge>
+/media/sf_edx/online_judge> git fetch origin
+/media/sf_edx/online_judge> git push origin master
+Username for 'https://github.com': jha-sudhakar
+Password for 'https://jha-sudhakar@github.com':
+Everything up-to-date
+/media/sf_edx/online_judge> touch first_file_after__git_clone.txt
+/media/sf_edx/online_judge> git add first_file_after__git_clone.txt
+/media/sf_edx/online_judge> git commit -m "1st commit"
+
+*** Please tell me who you are.
+
+Run
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+
+to set your account's default identity.
+Omit --global to set the identity only in this repository.
+
+fatal: unable to auto-detect email address (got 'user@ubuntu.(none)')
+/media/sf_edx/online_judge> git config user.name "sudhakar jha"
+/media/sf_edx/online_judge>  git config user.email "jhasahj@gmail.com"
+/media/sf_edx/online_judge> git commit -m "1st commit"
+[master 109c046] 1st commit
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 first_file_after__git_clone.txt
+/media/sf_edx/online_judge> git push origin master
+Username for 'https://github.com': jha-sudhakar
+Password for 'https://jha-sudhakar@github.com':
+Counting objects: 2, done.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (2/2), 285 bytes | 0 bytes/s, done.
+Total 2 (delta 1), reused 0 (delta 0)
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To https://github.com/jha-sudhakar/online_judge
+   fb0548d..109c046  master -> master
+/media/sf_edx/online_judge>
+
